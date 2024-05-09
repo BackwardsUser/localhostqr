@@ -37,7 +37,6 @@ function getNets(): Promise<any> {
 
 async function generateQR(port: number) {
   const results: any = await getNets();
-  console.log(results)
   let ip = results["Wi-Fi"] || results["eth"] || results["wlan0"];
   if (!ip) {
     console.log("Cannot find an IP.")

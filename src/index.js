@@ -78,7 +78,6 @@ function generateQR(port) {
                 case 0: return [4 /*yield*/, getNets()];
                 case 1:
                     results = _a.sent();
-                    console.log(results);
                     ip = results["Wi-Fi"] || results["eth"] || results["wlan0"];
                     if (!ip) {
                         console.log("Cannot find an IP.");
