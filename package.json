@@ -1,6 +1,6 @@
 {
   "name": "localhostqr",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "A CLI tool used to get a QR code for local IP, allows web developers to get to their page on mobile easier.",
   "main": "src/index.js",
   "scripts": {
