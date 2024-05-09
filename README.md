@@ -17,7 +17,7 @@ getqr <port> # The port would be the open web server port.
 getqr 3000
 ```
 
-This will take the first useful local (lan) ip, will append the given port (3000) to the end and "http://" to the beginning, and will return the URL as a QR Code.
+This will take your LAN IP,  add "http://" to the beginning and add your port to the end. It'll then return the URL as a QR code.
 
 ## Important Notes
 This tool has no implementation in code, it is purely a CLI tool.
