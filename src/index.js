@@ -84,8 +84,6 @@ function generateQR(port) {
                 case 0: return [4 /*yield*/, getNets()];
                 case 1:
                     results = _a.sent();
-                    console.log(results);
-                    console.log(results["docker0"]);
                     for (_i = 0, validAdapters_1 = validAdapters; _i < validAdapters_1.length; _i++) {
                         adapter = validAdapters_1[_i];
                         if (results[adapter] != undefined) {
