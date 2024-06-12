@@ -26,7 +26,7 @@ This tool has no implementation in code, it is purely a CLI tool.
 Feel free to contribute as you feel necessary.  
 If you have an issue, feel free to open an [issue](https://github.com/BackwardsUser/localhostqr/issues)  
 If you'd like to donate your unique OS, [join the Discord](https://discord.gg/Zhq9yjhHKr) and ask to become a tester.  
-Any thoughts on optimizations, feel free to open [a pull request](https://github.com/BackwardsUser/localhostqr/pulls)
+Any thoughts on optimizations, feel free to open a [pull request](https://github.com/BackwardsUser/localhostqr/pulls)
 
 
 ## License
