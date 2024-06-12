@@ -8,6 +8,13 @@ import { existsSync, mkdir, mkdirSync, readdirSync } from 'node:fs';
 
 const outputFile = join(__dirname, 'qr', 'localhost.png');
 
+const validAdapters = [
+  "Wi-Fi", // Windows Wi-Fi
+  "eth", // Windows Ethernet
+  "wlan0", // Kali Linux
+  "wlo1", // Arch Linux
+]
+
 function httpify(host: string, port: number): string {
   return `http://${host}:${port}`;
 }
@@ -37,7 +44,13 @@ function getNets(): Promise<any> {
 
 async function generateQR(port: number) {
   const results: any = await getNets();
-  let ip = results["Wi-Fi"] || results["eth"] || results["wlan0"];
+  let ip;
+  for (var adapter of validAdapters) {
+    if (results[adapter] != undefined) {
+      ip = results[adapter];
+      break;
+    }
+  }
   if (!ip) {
     console.log("Cannot find an IP.")
     return;
@@ -62,10 +75,10 @@ async function generateQR(port: number) {
         }
       });
     } else if (platform() == "linux") {
-      exec(`open ${outputFile}`, (err, output) => {
+      exec(`xdg-open ${outputFile}`, (err, output) => {
         if (err) {
           console.error("Could not execute the command: ", err);
-          return;
+          console.log(`Your distribution doesn't support the "xdg-open" command. You can find it here: ${outputFile}`);
         }
       });
     } else {

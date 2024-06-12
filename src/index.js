@@ -44,6 +44,12 @@ var node_path_1 = require("node:path");
 var qrcode_1 = require("qrcode");
 var node_fs_1 = require("node:fs");
 var outputFile = (0, node_path_1.join)(__dirname, 'qr', 'localhost.png');
+var validAdapters = [
+    "Wi-Fi", // Windows Wi-Fi
+    "eth", // Windows Ethernet
+    "wlan0", // Kali Linux
+    "wlo1", // Arch Linux
+];
 function httpify(host, port) {
     return "http://".concat(host, ":").concat(port);
 }
@@ -72,13 +78,21 @@ function getNets() {
 }
 function generateQR(port) {
     return __awaiter(this, void 0, void 0, function () {
-        var results, ip, url;
+        var results, ip, _i, validAdapters_1, adapter, url;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, getNets()];
                 case 1:
                     results = _a.sent();
-                    ip = results["Wi-Fi"] || results["eth"] || results["wlan0"];
+                    console.log(results);
+                    console.log(results["docker0"]);
+                    for (_i = 0, validAdapters_1 = validAdapters; _i < validAdapters_1.length; _i++) {
+                        adapter = validAdapters_1[_i];
+                        if (results[adapter] != undefined) {
+                            ip = results[adapter];
+                            break;
+                        }
+                    }
                     if (!ip) {
                         console.log("Cannot find an IP.");
                         return [2 /*return*/];
@@ -102,10 +116,10 @@ function generateQR(port) {
                             });
                         }
                         else if ((0, node_os_1.platform)() == "linux") {
-                            (0, node_child_process_1.exec)("open ".concat(outputFile), function (err, output) {
+                            (0, node_child_process_1.exec)("xdg-open ".concat(outputFile), function (err, output) {
                                 if (err) {
                                     console.error("Could not execute the command: ", err);
-                                    return;
+                                    console.log("Your distribution doesn't support the \"xdg-open\" command. You can find it here: ".concat(outputFile));
                                 }
                             });
                         }
