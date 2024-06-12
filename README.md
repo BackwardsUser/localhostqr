@@ -19,9 +19,6 @@ getqr 3000
 
 This will take your LAN IP,  add "http://" to the beginning and add your port to the end. It'll then return the URL as a QR code.
 
-## Important Notes
-This tool has no implementation in code, it is purely a CLI tool.
-
 ## Contributing
 Feel free to contribute as you feel necessary.  
 If you have an issue, feel free to open an [issue](https://github.com/BackwardsUser/localhostqr/issues)  
